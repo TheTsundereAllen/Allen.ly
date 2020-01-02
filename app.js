@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var hash = require("./util/hash");
 
 var app = express();
 var MongoClient = require("mongodb").MongoClient;
@@ -52,6 +53,10 @@ MongoClient.connect(
       });
 
       app.post("/api/shorten-url", (function (req, res) {
+          var originalURL = req.body["original-url"];
+          var hashedURL = hash.hash(originalURL);
+          var rangeMax = Math.random() * (hashedURL.length - 7);
+          var rangeMin = 0;
 
       }));
 
