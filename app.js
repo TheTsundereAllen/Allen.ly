@@ -34,8 +34,10 @@ MongoClient.connect(
       var db = client.db(Database).admin();
       app.locals.db = db;
 
+      var collection = db.collection("data");
+
       app.get("/:id", function(req, res) {
-          db.find({
+          collection.find({
               "shortened-id": req.params.id.toLowerCase()
           }).toArray(function (err, result) {
               if (err != null) {
@@ -54,9 +56,41 @@ MongoClient.connect(
 
       app.post("/api/shorten-url", (function (req, res) {
           var originalURL = req.body["original-url"];
-          var hashedURL = hash.hash(originalURL);
-          var rangeMax = Math.random() * (hashedURL.length - 7);
-          var rangeMin = 0;
+          var urlId = req.body["customized-id"];
+
+          if (urlId == null) {
+              var hashedURL = hash.hash(originalURL);
+              var rangeMin = Math.random() * (hashedURL.length - 7);
+              urlId = hashedURL.substring(rangeMin, rangeMin + 7);
+          } else {
+              (collection.find({
+                  "url-id": urlId
+              }), function (err, result) {
+                  if (result != null) {
+                      urlId = null;
+                  }
+              });
+          }
+
+
+          var document = {
+              "original-url": originalURL,
+              "shortened-id": urlId
+          };
+
+          if (urlId != null) {
+              collection.insertOne(document, {}, function (err, result) {
+                  if (err != null) {
+                      res.status(500);
+                      return;
+                  }
+
+                  res.status(200);
+                  console.log("Document inserted");
+              });
+          } else {
+              res.status(402);
+          }
 
       }));
 
