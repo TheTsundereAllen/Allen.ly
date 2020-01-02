@@ -5,9 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/send');
 
 var app = express();
+var MongoClient = require("mongodb").MongoClient;
+var ConnectionURL = "mongodb://{username}:{password}@{host}:{port}/{database}";
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,23 +21,35 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+var Database = "kalvin-workshop-topic-2";
+var User = "Kalvin";
+var Password = "KalvinChang2020";
+ConnectionURL = ConnectionURL.replace("{host}", "173.230.155.191")
+    .replace("{port}", "27017")
+    .replace("{username}", User)
+    .replace("{password}", Password)
+    .replace("{database}", Database);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+MongoClient.connect(
+    ConnectionURL,
+    function (err, client) {
+      app.locals.db = client.db(Database).admin();
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+      app.use(function(req, res, next) {
+        next(createError(404));
+      });
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
+      app.use(function(err, req, res, next) {
+        // set locals, only providing error in development
+        res.locals.message = err.message;
+        res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+        // render the error page
+        res.status(err.status || 500);
+        res.render('error');
+      });
+
+    }
+);
 
 module.exports = app;
