@@ -4,9 +4,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/send');
-
 var app = express();
 var MongoClient = require("mongodb").MongoClient;
 var ConnectionURL = "mongodb://{username}:{password}@{host}:{port}/{database}";
@@ -33,7 +30,30 @@ ConnectionURL = ConnectionURL.replace("{host}", "173.230.155.191")
 MongoClient.connect(
     ConnectionURL,
     function (err, client) {
-      app.locals.db = client.db(Database).admin();
+      var db = client.db(Database).admin();
+      app.locals.db = db;
+
+      app.get("/:id", function(req, res) {
+          db.find({
+              "shortened-id": req.params.id.toLowerCase()
+          }).toArray(function (err, result) {
+              if (err != null) {
+                  res.status(404);
+              } else {
+                  var url = result[0]["original-url"];
+                  if (url == null) {
+                      res.status(404);
+                      res.render("./public/404.html") //For example
+                  } else {
+                      res.redirect(301, url);
+                  }
+              }
+          })
+      });
+
+      app.post("/api/shorten-url", (function (req, res) {
+
+      }));
 
       app.use(function(req, res, next) {
         next(createError(404));
@@ -51,5 +71,7 @@ MongoClient.connect(
 
     }
 );
+
+app.listen(8000);
 
 module.exports = app;
