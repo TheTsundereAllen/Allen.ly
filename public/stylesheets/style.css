@@ -33,8 +33,11 @@
   background: transparent;
   border: none;
   outline: none;
+  padding: 1vw;
 }
 #textarea{
   background-color: var(--darkgray);
   text-align: center;
+  padding: 7vw;
+  margin: 2vw;
 }
