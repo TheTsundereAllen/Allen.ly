@@ -45,9 +45,6 @@ MongoClient.connect(
       });
 
       app.get("/:id", function(req, res) {
-
-          console.log(req.params.id);
-
           collection.find({
               "shortened-id": req.params.id
           });
@@ -126,7 +123,6 @@ MongoClient.connect(
                           original_url: document["original-url"],
                           shortened_id: document["shortened-id"]
                       });
-                      console.log("Document inserted");
                   });
               } else {
                   res.status(400);
