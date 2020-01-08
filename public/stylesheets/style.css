@@ -2,38 +2,45 @@
   --main-blue: #b0d0ee;
   --eggwhite: #f8f7f7;
   --darkgray: #63646d;
-  margin: 0px;
+  margin: 0vw;
 }
 #popup{
   background-color: var(--eggwhite);
-  border: Transparent, 1px, solid;
-  border-radius: 15px;
+  border: Transparent, 1vw, solid;
+  border-radius: 2vw;
 }
 #newlink{
   background-color: var(--main-blue);
   color: black;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
-  border: Transparent, 1px, solid;
-  border-radius: 15px, 15px, 0px, 0px;
+  font-size: 2vw;
+  border: Transparent, 1vw, solid;
   text-align: center;
   padding: 2vw;
   position: relative;
+  height: 2.5vw;
 }
 #deletebutton{
   background: transparent;
   border: transparent, 1px, solid;
-  outline: none;
   float: right;
-  position: relative;
+  position: absolute;
+  right: 0vw;
   top: 0vw;
   margin: 0.5vw;
+  height: 3vw;
+}
+#copy{
+  float: right;
+  position: relative;
+  right: 2vw;
 }
 .icons{
   background: transparent;
-  border: none;
-  outline: none;
-  padding: 1vw;
+  border: solid, 0.5vw, black;
+  padding: 0.5vw;
+  margin-left: 2vw;
+  margin-bottom: 1vw;
 }
 #textarea{
   background-color: var(--darkgray);
