@@ -1,8 +1,23 @@
+<<<<<<< HEAD
 *{
   --main-blue: #b0d0ee;
   --eggwhite: #f8f7f7;
   --darkgray: #63646d;
   margin: 0vw;
+=======
+
+#modal{
+  position: fixed;
+  margin: auto;
+  z-index: 3;
+  width: 65%;
+  height: 70%;
+  border-radius: 2vh;
+  margin-left: 17.5vw;
+  margin-top: 16vh;
+  background-color: var(--eggwhite);
+  text-align: center;
+>>>>>>> 184ef015d747c51522c78d8892f6a7a43d5ffd1e
 }
 #popup{
   background-color: var(--eggwhite);
@@ -13,6 +28,7 @@
   background-color: var(--main-blue);
   color: black;
   font-family: Arial, Helvetica, sans-serif;
+<<<<<<< HEAD
   font-size: 2vw;
   border: Transparent, 1vw, solid;
   text-align: center;
@@ -27,6 +43,20 @@
   position: absolute;
   right: 0vw;
   top: 0vw;
+=======
+  font-size: 3vh;
+  text-align: center;
+  padding: 2vw;
+  position: relative;
+  height:auto;
+}
+#deletebutton{
+  background-color: transparent;
+  float: right;
+  position: relative;
+  top: -10.5vh;
+  right:1vw;
+>>>>>>> 184ef015d747c51522c78d8892f6a7a43d5ffd1e
   margin: 0.5vw;
   height: 3vw;
 }
@@ -43,8 +73,20 @@
   margin-bottom: 1vw;
 }
 #textarea{
+  background-color: var(--eggwhite);
+  padding: 3vw 0vw;
+  width: 100%;
+  height: auto;
+  font-size: 5vh;
+  text-decoration: underline;
+}
+#copylinkbtn{
+  margin: auto;
+  height: auto;
+  width: 20%;
   background-color: var(--darkgray);
-  text-align: center;
-  padding: 7vw;
-  margin: 2vw;
+  color: white;
+  padding: 3vh;
+  margin-top:4vh;
+  border-radius: 1vh;
 }
