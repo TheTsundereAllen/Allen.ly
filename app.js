@@ -45,23 +45,28 @@ MongoClient.connect(
       });
 
       app.get("/:id", function(req, res) {
-          if (req.params.length > 0) {
-              collection.find({
-                  "shortened-id": req.params.id.toLowerCase()
-              }).toArray(function (err, result) {
-                  if (err != null) {
+
+          console.log(req.params.id);
+
+          collection.find({
+              "shortened-id": req.params.id
+          });
+
+          collection.find({
+              "shortened-id": req.params.id.toLowerCase()
+          }).toArray(function (err, result) {
+              if (err != null) {
+                  res.status(404);
+              } else {
+                  var url = result[0]["original-url"];
+                  if (url == null) {
                       res.status(404);
+                      res.render("./public/404.html") //For example
                   } else {
-                      var url = result[0]["original-url"];
-                      if (url == null) {
-                          res.status(404);
-                          res.render("./public/404.html") //For example
-                      } else {
-                          res.redirect(301, url);
-                      }
+                      res.redirect(301, url);
                   }
-              })
-          }
+              }
+          })
       });
 
       app.post("/api/shorten-url", (function (req, res) {
@@ -84,24 +89,16 @@ MongoClient.connect(
                   var rangeMin = Math.random() * (hashedURL.length - 7);
                   urlId = hashedURL.substring(rangeMin, rangeMin + 7);
               } else {
-                  if (collection.find({
-                    "shortened-id": urlId.trim()
-                  })) {
+                  collection.findOne({
+                    "shortened-id": urlId
+                  }).then(function (value) {
                       res.status(400);
                       res.send({
                           code: 400,
                           message: 'Bad Request',
                           description: 'The specified id already exists'
                       })
-                  }
-              }
-
-              while (collection.find({
-                  "shortened-id": urlId.trim()
-              })) {
-                  hashedURL = hash.hash(originalURL);
-                  rangeMin = Math.random() * (hashedURL.length - 7);
-                  urlId = hashedURL.substring(rangeMin, rangeMin + 7);
+                  })
               }
 
               var document = {
