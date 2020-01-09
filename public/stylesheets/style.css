@@ -20,19 +20,20 @@
 #newlink{
   background-color: var(--main-blue);
   color: white;
-  font-family: lemon;
   font-size: 5vh;
   text-align: center;
   padding: 2vw;
   position: relative;
   height:auto;
+  font-family: 'Secular One';
+  font-weight: normal;
 }
 #deletebutton{
   background-color: transparent;
   float: right;
-  position: relative;
-  top: -12.5vh;
-  right:1vw;
+  position: absolute;
+  top: 2.5vh;
+  right: 1vw;
   margin: 0.5vw;
 }
 #deletebutton:hover{
@@ -46,13 +47,16 @@
 }
 #textarea{
   background-color: var(--eggwhite);
-  padding: 3vw 0vw;
-  width: 100%;
+  padding: 1vw 0vw;
+  width: 40%;
   height: auto;
   font-size: 5vh;
-  text-decoration: underline;
+  margin: 10vh;
+  border: none;
+  border-bottom: solid 0.5vh var(--darkgray);
 }
 #copylinkbtn{
+  font-family: "Secular One";
   margin: auto;
   height: auto;
   width: 20%;
@@ -61,7 +65,11 @@
   padding: 3vh;
   margin-top:4vh;
   border-radius: 1vh;
+  font-size: 3vh;
+  transition: all 0.2s ease-in-out;
+
 }
 #copylinkbtn:hover{
   cursor: pointer;
+  background-color: var(--main-blue);
 }
