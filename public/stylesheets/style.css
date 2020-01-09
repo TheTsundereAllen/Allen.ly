@@ -1,13 +1,14 @@
 
 #modal{
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   position: fixed;
   margin: auto;
   z-index: 3;
   width: 65%;
   height: 70%;
   border-radius: 2vh;
-  margin-left: 17.5vw;
-  margin-top: 16vh;
   background-color: var(--eggwhite);
   text-align: center;
 }
