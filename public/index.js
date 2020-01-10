@@ -16,10 +16,9 @@ document.getElementById("copylinkbtn").addEventListener("click",function(){
 })
 
 let x=document.getElementsByTagName("p");
-console.log(x.length)
 for(let i=0;i<x.length;i++){
-  if(x[i].length>30){
-    x[i]=x.substring(0,26)+"...";
-    console.log(x[i]);
+  if(x[i].innerText.length>47){
+    x[i].innerText=x[i].innerText.substring(0,45)+"...";
+    console.log(x[i].innerText);
   }
 }

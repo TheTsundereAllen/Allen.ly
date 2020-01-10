@@ -142,6 +142,7 @@ h3{
 }
 .cards p{
   height:auto;
+  text-align: left;
   cursor: pointer;
   color:var(--darkgray);
   font-size: 1vw;
