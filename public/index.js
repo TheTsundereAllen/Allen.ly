@@ -15,11 +15,3 @@ document.getElementById("copylinkbtn").addEventListener("click",function(){
   alert("Copied the text: " + copyText.value);
 })
 
-let x=document.getElementsByTagName("p");
-console.log(x.length)
-for(let i=0;i<x.length;i++){
-  if(x[i].length>30){
-    x[i]=x.substring(0,26)+"...";
-    console.log(x[i]);
-  }
-}
