@@ -48,18 +48,18 @@
 #textarea{
   background-color: var(--eggwhite);
   padding: 1vw 0vw;
-  width: 40%;
+  width: 50%;
   height: auto;
-  font-size: 5vh;
+  font-size: 4vh;
   margin: 10vh;
   border: none;
   border-bottom: solid 0.5vh var(--darkgray);
 }
-#copylinkbtn{
+#savelinkbtn{
   font-family: "Secular One";
   margin: auto;
   height: auto;
-  width: 20%;
+  width: 15%;
   background-color: var(--darkgray);
   color: white;
   padding: 3vh;
@@ -69,7 +69,17 @@
   transition: background-color 0.2s ease-in-out;
 
 }
-#copylinkbtn:hover{
+#savelinkbtn:hover{
   cursor: pointer;
   background-color: var(--main-blue);
+}
+#copylinkbtn{
+  position: absolute;
+  background-color: transparent;
+  height: 10%;
+  top: 28vh;
+  right: 27vh;
+}
+#copylinkbtn:hover{
+  cursor: pointer;
 }
